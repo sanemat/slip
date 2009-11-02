@@ -1,2 +1,2 @@
-require 'hello'
+require 'slip'
 run Sinatra::Application
