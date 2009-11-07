@@ -10,7 +10,7 @@ end
 class Slip < SlideDown
   def self.render(source_path, template = "default")
     if source_path
-      slideshow = new(open(source_path, :proxy => ENV['http_proxy']).read)
+      slideshow = new(open(source_path).read)
       slideshow.render(template)
     end
   end
