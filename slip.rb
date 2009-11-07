@@ -17,5 +17,5 @@ class Slip < SlideDown
 end
 
 get %r{/(.+)} do
-  "#{Slip::render(params[:captures].to_s)}"
+  Slip::render(params[:captures].to_s)
 end
