@@ -4,7 +4,7 @@ require 'open-uri'
 require 'slidedown'
 
 get '/' do
-  "world of markdown to presentation!"
+  '<a href="http://slip.sane.jp/http://github.com/sanemat/seeds/raw/master/slip.md">world of markdown to presentation!</a>'
 end
 
 class Slip < SlideDown
