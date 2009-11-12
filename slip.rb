@@ -18,9 +18,24 @@ class Slip < SlideDown
 end
 
 get %r{/(.+)} do
+  @cache = MemCache::new('localhost:11211',:namespace => 'slip')
   url = params[:captures].to_s
   http!(url)
-  Slip::render(url)
+  read(url)
+end
+
+post %r{/(.+)} do
+  @cache = MemCache::new('localhost:11211',:namespace => 'slip')
+  url = params[:captures].to_s
+  http!(url)
+  create(url)
+end
+
+put %r{/(.+)} do
+  @cache = MemCache::new('localhost:11211',:namespace => 'slip')
+  url = params[:captures].to_s
+  http!(url)
+  create(url)
 end
 
 helpers do
@@ -31,15 +46,12 @@ helpers do
   end
   
   def create(url)
+    @cache[url] = Slip::render(url)
+    @cache.get(url)
   end
 
-  def update(url)
-  end
-  
   def read(url)
+    @cache.get(url) or @cache.add(url, Slip::render(url))
   end
 end
 
-configure do
-  @cache = MemCache::new(:namespace => 'slip')
-end
