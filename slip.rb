@@ -17,5 +17,9 @@ class Slip < SlideDown
 end
 
 get %r{/(.+)} do
-  Slip::render(params[:captures].to_s)
+  url = params[:captures].to_s
+  unless url =~ %r{^https?://}
+    halt 502, 'bad protocol'
+  end
+  Slip::render(url)
 end
