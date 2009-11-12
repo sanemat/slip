@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'open-uri'
 require 'slidedown'
+require 'memcache'
 
 get '/' do
   '<a href="http://slip.sane.jp/http://github.com/sanemat/seeds/raw/master/slip.md">world of markdown to presentation!</a>'
@@ -40,5 +41,5 @@ helpers do
 end
 
 configure do
-  
+  @cache = MemCache::new(:namespace => 'slip')
 end
