@@ -51,7 +51,7 @@ helpers do
   end
 
   def read(url)
-    @cache.get(url) or @cache.add(url, Slip::render(url))
+    @cache.get(url) || create(url)
   end
 end
 
