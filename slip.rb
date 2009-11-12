@@ -18,8 +18,14 @@ end
 
 get %r{/(.+)} do
   url = params[:captures].to_s
-  unless url =~ %r{^https?://}
-    halt 502, 'bad protocol'
-  end
+  http!(url)
   Slip::render(url)
+end
+
+helpers do
+  def http!(url)
+    unless url =~ %r{^https?://}
+      halt 502, 'bad protocol'
+    end
+  end
 end
