@@ -28,4 +28,17 @@ helpers do
       halt 502, 'bad protocol'
     end
   end
+  
+  def create(url)
+  end
+
+  def update(url)
+  end
+  
+  def read(url)
+  end
+end
+
+configure do
+  
 end
