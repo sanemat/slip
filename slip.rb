@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'sinatra'
+gem 'sinatra', '< 1.0'
 require 'open-uri'
 require 'slidedown'
 require 'memcache'
